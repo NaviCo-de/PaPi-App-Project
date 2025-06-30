@@ -2,11 +2,12 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Plus, Home, Calendar, MessageSquare, User, Droplets, Clock, Zap } from "lucide-react"
+import { Plus, Home, Calendar, MessageSquare, User, Droplets, Clock, Zap, X } from "lucide-react"
 
 export default function HomePage() {
   const router = useRouter()
   const [showPlants, setShowPlants] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   const notifications = [
     {
@@ -46,15 +47,29 @@ export default function HomePage() {
     },
   ]
 
+  const handleAddPlant = () => {
+    setShowModal(true)
+  }
+
+  const handlePlanningPlant = () => {
+    setShowModal(false)
+    router.push("/pilih-tanaman?type=rencana")
+  }
+
+  const handleActivePlant = () => {
+    setShowModal(false)
+    router.push("/pilih-tanaman?type=aktif")
+  }
+
   return (
-    <div className="min-h-screen max-w-md mx-auto bg-gray-50">
+    <div className="min-h-screen max-w-md mx-auto bg-gray-50 relative">
       {/* Header */}
       <div className="bg-white px-6 py-4 border-b">
         <h1 className="text-xl font-bold text-[#7CB342]">PaPi</h1>
       </div>
 
       {/* Content */}
-      <div className="px-6 py-4 space-y-6">
+      <div className="px-6 py-4 space-y-6 pb-20">
         {/* Notifications */}
         <div>
           <h2 className="text-lg font-semibold text-gray-800 mb-4">Notifikasi</h2>
@@ -76,8 +91,8 @@ export default function HomePage() {
 
         {/* Add Plant Button */}
         <button
-          onClick={() => setShowPlants(!showPlants)}
-          className="w-full bg-gradient-to-r from-[#7CB342] to-[#FFA726] hover:from-[#689F38] hover:to-[#FF9800] text-white py-4 rounded-xl font-medium flex items-center justify-center space-x-2 transition-all"
+          onClick={handleAddPlant}
+          className="w-full bg-gradient-to-r from-[#7CB342] to-[#FFA726] hover:from-[#689F38] hover:to-[#FF9800] text-white py-4 rounded-xl font-medium flex items-center justify-center space-x-2 transition-colors"
         >
           <Plus className="w-5 h-5" />
           <span>Tambah Tanaman</span>
@@ -96,7 +111,7 @@ export default function HomePage() {
           ) : (
             <div className="space-y-4">
               {plants.map((plant, index) => (
-                <div key={index} className="p-4 bg-gray-100 rounded-lg border">
+                <div key={index} className="p-4 bg-gray-100 rounded-lg">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-orange-200 rounded-lg flex items-center justify-center">
                       <svg viewBox="0 0 24 24" className="w-8 h-8 text-orange-600">
@@ -145,6 +160,62 @@ export default function HomePage() {
           </button>
         </div>
       </div>
+
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-sm mx-4">
+            <div className="flex justify-end mb-4">
+              <button onClick={() => setShowModal(false)} className="text-gray-500 hover:text-gray-700">
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              {/* Rencana Tanam */}
+              <button
+                onClick={handlePlanningPlant}
+                className="w-full p-4 bg-gray-100 rounded-xl text-left hover:bg-gray-200 transition-colors"
+              >
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-12 bg-yellow-200 rounded-lg flex items-center justify-center">
+                    <div className="w-8 h-4 bg-yellow-600 rounded-full"></div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-gray-800 mb-1">Rencana Tanam</h3>
+                    <p className="text-xs text-gray-600">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    </p>
+                  </div>
+                </div>
+              </button>
+
+              {/* Tanaman Aktif */}
+              <button
+                onClick={handleActivePlant}
+                className="w-full p-4 bg-gray-100 rounded-xl text-left hover:bg-gray-200 transition-colors"
+              >
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-12 bg-green-200 rounded-lg flex items-center justify-center">
+                    <svg viewBox="0 0 24 24" className="w-8 h-8 text-green-600">
+                      <path
+                        fill="currentColor"
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-gray-800 mb-1">Tanaman Aktif</h3>
+                    <p className="text-xs text-gray-600">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    </p>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
