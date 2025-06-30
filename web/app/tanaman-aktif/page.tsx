@@ -31,7 +31,7 @@ export default function TanamanAktifPage() {
   return (
     <div className="min-h-screen max-w-md mx-auto bg-white">
       {/* Header */}
-      <div className="bg-[#7CB342] px-6 py-4 flex items-center">
+      <div className="bg-[#658100] px-6 py-4 flex items-center">
         <button onClick={handleBack} className="mr-4">
           <ArrowLeft className="w-6 h-6 text-white" />
         </button>
@@ -62,7 +62,7 @@ export default function TanamanAktifPage() {
             placeholder="Luas Lahan"
             value={formData.luasLahan}
             onChange={(e) => setFormData({ ...formData, luasLahan: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7CB342] focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#658100] focus:border-transparent"
           />
         </div>
 
@@ -73,7 +73,7 @@ export default function TanamanAktifPage() {
             placeholder="Jumlah tanaman"
             value={formData.jumlahTanaman}
             onChange={(e) => setFormData({ ...formData, jumlahTanaman: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7CB342] focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#658100] focus:border-transparent"
           />
         </div>
 
@@ -83,7 +83,7 @@ export default function TanamanAktifPage() {
             type="date"
             value={formData.tanggalTanam}
             onChange={(e) => setFormData({ ...formData, tanggalTanam: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7CB342] focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#658100] focus:border-transparent"
           />
         </div>
 
@@ -94,7 +94,7 @@ export default function TanamanAktifPage() {
             placeholder="Pupuk"
             value={formData.pupuk}
             onChange={(e) => setFormData({ ...formData, pupuk: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7CB342] focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#658100] focus:border-transparent"
           />
         </div>
 
@@ -105,7 +105,7 @@ export default function TanamanAktifPage() {
             placeholder="Waktu Penyiraman Terakhir"
             value={formData.waktuPenyiraman}
             onChange={(e) => setFormData({ ...formData, waktuPenyiraman: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7CB342] focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#658100] focus:border-transparent"
           />
         </div>
 
@@ -119,7 +119,7 @@ export default function TanamanAktifPage() {
                 <select
                   value={formData.provinsi}
                   onChange={(e) => setFormData({ ...formData, provinsi: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7CB342] focus:border-transparent appearance-none bg-white"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#658100] focus:border-transparent appearance-none bg-white"
                 >
                   <option value="">Pilih Provinsi</option>
                   <option value="jawa-barat">Jawa Barat</option>
@@ -136,7 +136,7 @@ export default function TanamanAktifPage() {
                 <select
                   value={formData.kota}
                   onChange={(e) => setFormData({ ...formData, kota: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7CB342] focus:border-transparent appearance-none bg-white"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#658100] focus:border-transparent appearance-none bg-white"
                 >
                   <option value="">Pilih Kota/Kabupaten</option>
                   <option value="bandung">Bandung</option>
@@ -153,7 +153,7 @@ export default function TanamanAktifPage() {
                 <select
                   value={formData.kecamatan}
                   onChange={(e) => setFormData({ ...formData, kecamatan: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7CB342] focus:border-transparent appearance-none bg-white"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#658100] focus:border-transparent appearance-none bg-white"
                 >
                   <option value="">Pilih Kecamatan</option>
                   <option value="cicendo">Cicendo</option>
@@ -168,7 +168,7 @@ export default function TanamanAktifPage() {
 
         <button
           onClick={handleSave}
-          className="w-full bg-[#7CB342] hover:bg-[#689F38] text-white py-3 rounded-lg font-medium mt-8 transition-colors"
+          className="w-full bg-[#658100] hover:bg-[#689F38] text-white py-3 rounded-lg font-medium mt-8 transition-colors"
         >
           Simpan
         </button>
