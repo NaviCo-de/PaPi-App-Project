@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import axios from "axios"
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -10,9 +11,20 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
 
-  const handleRegister = () => {
-    // Simple navigation to home for demo
-    router.push("/home")
+  const handleRegister =async () => {
+      // Simple navigation to home for demo
+      try {
+      const res = await axios.post('http://localhost:3000/register', {
+        username,
+        password,
+        email,
+      });
+      console.log('Registration success:');
+      alert('Registration successful');
+    } catch (err) {
+      console.log(err)
+      alert('Registration failed');
+    }
   }
 
   const handleLogin = () => {

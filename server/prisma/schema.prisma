@@ -16,7 +16,13 @@ datasource db {
 
 model User {
   id String @id @default(uuid())
-  username String
+  username String @unique
   email    String @unique
   password String
+  notification Notification[]
+}
+
+model Notification {
+  id String @id @default(uuid())
+  title String
 }

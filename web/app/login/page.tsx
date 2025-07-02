@@ -2,15 +2,22 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import axios from "axios"
 
 export default function LoginPage() {
   const router = useRouter()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     // Simple navigation to home for demo
-    router.push("/home")
+    try {
+      const res = await axios.post('http://localhost:3000/login', { username, password })
+      console.log(res)
+      alert('Login berhasil')
+    } catch (err) {
+      alert('Gagal Login');
+    }
   }
 
   const handleRegister = () => {
