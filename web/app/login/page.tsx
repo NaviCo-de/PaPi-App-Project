@@ -2,15 +2,29 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+
+import axios from "axios"
 import Image from "next/image"
+
 
 export default function LoginPage() {
   const router = useRouter()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleLogin = () => {
-    router.push("/home")
+  const handleLogin = async () => {
+    // Simple navigation to home for demo
+    try {
+      const res = await axios.post('http://localhost:3000/login', { username, password })
+      const token = res.data.access_token;
+      localStorage.setItem("token", token)
+      alert('Login berhasil')
+      router.push("/home")
+    } catch (err) {
+      alert('Gagal Login');
+    }
+
+
   }
 
   const handleRegister = () => {
