@@ -22,8 +22,29 @@ export default function TanamanAktifPage() {
   }
 
   const handleSave = () => {
-    // Save the active plant data
-    console.log("Saving tanaman aktif:", formData)
+    // Save the active plant data to localStorage
+    const plantData = {
+      id: Date.now().toString(),
+      name: "Wortel",
+      progress: 50,
+      plantDate: formData.tanggalTanam || "12/12/2025",
+      harvestDate: "Lusa Libur, xx Pebruari",
+      location: formData.kota || "Kebun Kita",
+      luasLahan: formData.luasLahan,
+      jumlahTanaman: formData.jumlahTanaman,
+      pupuk: formData.pupuk,
+      waktuPenyiraman: formData.waktuPenyiraman,
+      provinsi: formData.provinsi,
+      kecamatan: formData.kecamatan,
+      type: "aktif",
+    }
+
+    // Get existing plants from localStorage
+    const existingPlants = JSON.parse(localStorage.getItem("plants") || "[]")
+    existingPlants.push(plantData)
+    localStorage.setItem("plants", JSON.stringify(existingPlants))
+
+    console.log("Saving tanaman aktif:", plantData)
     // Navigate back to home and show the new plant
     router.push("/home")
   }
