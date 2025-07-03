@@ -1,14 +1,21 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { Plus, Home, Calendar, MessageSquare, User, Droplets, Clock, Zap, X } from "lucide-react"
+import { Plus, Home, MessageSquare, User, Droplets, Clock, Zap, X } from "lucide-react"
 import Image from "next/image"
 
 export default function HomePage() {
   const router = useRouter()
   const [showPlants, setShowPlants] = useState(false)
   const [showModal, setShowModal] = useState(false)
+  const [savedPlants, setSavedPlants] = useState([])
+
+  useEffect(() => {
+    const plants = JSON.parse(localStorage.getItem("plants") || "[]")
+    setSavedPlants(plants)
+    setShowPlants(plants.length > 0)
+  }, [])
 
   const notifications = [
     {
@@ -60,6 +67,10 @@ export default function HomePage() {
   const handleActivePlant = () => {
     setShowModal(false)
     router.push("/pilih-tanaman?type=aktif")
+  }
+
+  const handlePlantClick = (plant) => {
+    router.push(`/detail-tanaman?id=${plant.id}`)
   }
 
   return (
@@ -114,11 +125,15 @@ export default function HomePage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {plants.map((plant, index) => (
-                <div key={index} className="p-5 bg-white rounded-2xl border-2 border-gray-200 shadow-sm">
+              {savedPlants.map((plant, index) => (
+                <button
+                  key={plant.id || index}
+                  onClick={() => handlePlantClick(plant)}
+                  className="w-full p-5 bg-white rounded-2xl border-2 border-gray-200 shadow-sm hover:shadow-md transition-shadow text-left"
+                >
                   <div className="flex items-center space-x-4">
                     <div className="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center">
-                      <Image src="/Tanaman Aktif.svg" alt="Tanaman Aktif" width={32} height={32} className="w-8 h-8" />
+                      <Image src="/Wortel.svg" alt="Wortel" width={32} height={32} className="w-8 h-8" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
@@ -137,7 +152,7 @@ export default function HomePage() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           )}
@@ -150,8 +165,8 @@ export default function HomePage() {
           <button className="flex flex-col items-center space-y-1">
             <Home className="w-7 h-7 text-[#658100]" />
           </button>
-          <button className="flex flex-col items-center space-y-1">
-            <Calendar className="w-7 h-7 text-gray-400" />
+          <button onClick={() => router.push("/chatbot")} className="flex flex-col items-center space-y-1">
+            <Image src="/Logo Chatbot.svg" alt="Chatbot" width={28} height={28} className="w-7 h-7" />
           </button>
           <button className="flex flex-col items-center space-y-1">
             <MessageSquare className="w-7 h-7 text-gray-400" />
