@@ -11,7 +11,6 @@ generator client {
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -19,10 +18,23 @@ model User {
   username String @unique
   email    String @unique
   password String
-  notification Notification[]
+  plants PlantInstance[]
 }
 
-model Notification {
-  id String @id @default(uuid())
-  title String
+model PlantInstance {
+  id         Int        @id @default(autoincrement())
+  plantedAt  DateTime   @default(now())
+  userId     String
+  plantTypeId Int
+  user       User       @relation(fields: [userId], references: [id])
+  plantType  PlantType  @relation(fields: [plantTypeId], references: [id])
 }
+
+model PlantType {
+  id      Int               @id @default(autoincrement())
+  name    String
+  species String?
+  plants  PlantInstance[]
+}
+
+

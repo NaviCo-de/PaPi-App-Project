@@ -21,6 +21,7 @@ export default function RegisterPage() {
       });
       console.log('Registration success:');
       alert('Registration successful');
+      router.push("/login")
     } catch (err) {
       console.log(err)
       alert('Registration failed');

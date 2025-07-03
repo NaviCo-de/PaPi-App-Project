@@ -13,8 +13,10 @@ export default function LoginPage() {
     // Simple navigation to home for demo
     try {
       const res = await axios.post('http://localhost:3000/login', { username, password })
-      console.log(res)
+      const token = res.data.access_token;
+      localStorage.setItem("token", token)
       alert('Login berhasil')
+      router.push("/home")
     } catch (err) {
       alert('Gagal Login');
     }
