@@ -2,7 +2,10 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+
 import axios from "axios"
+import Image from "next/image"
+
 
 
 export default function LoginPage() {
@@ -21,6 +24,8 @@ export default function LoginPage() {
     } catch (err) {
       alert('Gagal Login');
     }
+
+
   }
 
   const handleRegister = () => {
@@ -30,70 +35,63 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen max-w-md mx-auto bg-white">
       {/* Header with logo */}
-      <div className="bg-[#7CB342] px-6 py-8 rounded-b-3xl">
+      <div className="bg-[#658100] px-6 py-8 rounded-b-3xl">
         <div className="flex flex-col items-center text-white">
-          <div className="w-20 h-20 mb-4">
-            <svg viewBox="0 0 120 120" className="w-full h-full">
-              <path d="M60 20 L100 80 L20 80 Z" fill="none" stroke="white" strokeWidth="3" />
-              <path d="M60 30 L85 70 L35 70 Z" fill="white" fillOpacity="0.3" />
-              <path d="M35 65 Q45 60 55 65 T75 65" fill="none" stroke="white" strokeWidth="2" />
-              <path d="M40 70 Q50 65 60 70 T80 70" fill="none" stroke="white" strokeWidth="2" />
-            </svg>
+          <div className="w-24 h-24 mb-4">
+            <Image src="/Logo White.svg" alt="Logo White" width={96} height={96} className="w-full h-full" />
           </div>
-          <h1 className="text-xl font-bold">PaPi</h1>
-          <p className="text-sm opacity-90">Panen Pintar</p>
         </div>
       </div>
 
       {/* Form section */}
       <div className="px-6 py-8">
-        <h2 className="text-lg font-semibold text-center mb-8">Selamat Datang, Sahabat Pintar!</h2>
+        <h2 className="text-xl font-bold text-center mb-8 text-gray-800">Selamat Datang, Sahabat Pintar!</h2>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Username</label>
+            <label className="block text-sm font-semibold text-gray-800 mb-2">Username</label>
             <input
               type="text"
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7CB342] focus:border-transparent"
+              className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#658100] focus:border-transparent"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+            <label className="block text-sm font-semibold text-gray-800 mb-2">Password</label>
             <input
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7CB342] focus:border-transparent"
+              className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#658100] focus:border-transparent"
             />
           </div>
 
           <div className="text-right">
-            <button className="text-sm text-gray-500 hover:text-gray-700">Forgot Password?</button>
+            <button className="text-sm text-[#658100] hover:text-[#689F38] font-semibold">Forgot Password?</button>
           </div>
 
           <button
             onClick={handleLogin}
-            className="w-full bg-[#7CB342] hover:bg-[#689F38] text-white py-3 rounded-lg font-medium transition-colors"
+            className="w-full bg-[#658100] hover:bg-[#689F38] text-white py-4 rounded-xl font-bold transition-colors text-lg"
           >
             Log In
           </button>
 
-          <div className="relative my-6">
+          <div className="relative my-8">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300" />
+              <div className="w-full border-t-2 border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">atau</span>
+              <span className="px-4 bg-white text-gray-600 font-semibold">atau</span>
             </div>
           </div>
 
-          <button className="w-full py-3 rounded-lg font-medium border border-gray-300 bg-white hover:bg-gray-50 transition-colors flex items-center justify-center">
-            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
+          <button className="w-full py-4 rounded-xl font-semibold border-2 border-gray-300 bg-white hover:bg-gray-50 transition-colors flex items-center justify-center">
+            <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
               <path
                 fill="#4285F4"
                 d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -116,9 +114,9 @@ export default function LoginPage() {
         </div>
 
         <div className="mt-8 text-center">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-700">
             Belum punya akun?{" "}
-            <button onClick={handleRegister} className="text-[#7CB342] font-medium hover:underline">
+            <button onClick={handleRegister} className="text-[#658100] font-bold hover:underline">
               Buat Akun
             </button>
           </p>
