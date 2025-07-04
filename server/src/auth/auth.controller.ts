@@ -3,13 +3,12 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
-@Controller('') //localhost:/login
+@Controller('')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
   register(@Body() body: { username: string; password: string, email: string}) {
-    console.log('Hello');
     return this.authService.register(body.username, body.password, body.email);
   }
 
